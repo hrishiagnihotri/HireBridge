@@ -79,11 +79,7 @@ async def logout(request: Request):
 from twilio.rest import Client
 async def send_text(company,applyby,postedby):
     message = f"Hey HireBridge Alert, a job opportunity at {company} that fits your profile is posted on Hirebridge. Apply by {applyby}. -{postedby}."
-    # Twilio credentials (from your Twilio Console)
-    account_sid = '-'
-    auth_token = '-'
-    twilio_number = '-'  # Your Twilio phone number
-    destination_number = '-'  # The number you want to send SMS to
+   
 
     # Initialize the client
     client = Client(account_sid, auth_token)
