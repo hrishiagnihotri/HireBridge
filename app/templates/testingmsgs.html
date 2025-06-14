@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="outerlayout">
+        <form id="msgForm">
+            <div class="optionpane">
+                <label for="options">Select Reciepients</label>
+                <div class="orpane">
+                    <input type="radio" name='options' value="or" onclick="toggleField(this)" required>
+                    <select name="mode1" class="recInputs" id="ormode1" onchange="presentpane(this)" disabled>
+                        <option value="--">--</option>
+                        <option value="sem">Semester</option>
+                        <option value="dept">dept</option>
+                        <option value="gender">gender</option>
+                    </select>
+                    <select name="orsem1" class="recInputs" id="ormode1sem" style="display: none;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <select name="ordept1" class="recInputs" id="ormode1dept" style="display: none;">
+                        <option value="CSE">CSE</option>
+                        <option value="CSE-AIML">CSE-AIML</option>
+                        <option value="EC">EC</option>
+                        <option value="EEE">EEE</option>
+                        <option value="Mech">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                    </select>
+                    <select name="orgender1" class="recInputs" id="ormode1gender" style="display: none;">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="idk">idk</option>
+                    </select>
+                    OR
+                    <select name="mode2" class="recInputs" id="ormode2" onchange="presentpane(this)" disabled>
+                        <option value="--">--</option>
+                        <option value="sem">Semester</option>
+                        <option value="dept">dept</option>
+                        <option value="gender">gender</option>
+                    </select>
+                    <select name="orsem2" class="recInputs" id="ormode2sem" style="display: none;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+
+                    <select name="ordept2" class="recInputs" id="ormode2dept" style="display: none;">
+                        <option value="CSE">CSE</option>
+                        <option value="CSE-AIML">CSE-AIML</option>
+                        <option value="EC">EC</option>
+                        <option value="EEE">EEE</option>
+                        <option value="Mech">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                    </select>
+
+                    <select name="orgender2" class="recInputs" id="ormode2gender" style="display: none;">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="idk">idk</option>
+                    </select>
+    
+                </div>
+                <div class="andpane">
+                    <input type="radio" name='options' value="and" onclick="toggleField(this)">
+                    <select name="mode1" class="recInputs" id="andmode1" onchange="presentpane(this)" disabled>
+                        <option value="--">--</option>
+                        <option value="sem">Semester</option>
+                        <option value="dept">dept</option>
+                        <option value="gender">gender</option>
+                    </select>
+                    <select name="andsem1" class="recInputs" id="andmode1sem" style="display: none;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <select name="anddept1" class="recInputs" id="andmode1dept" style="display: none;">
+                        <option value="CSE">CSE</option>
+                        <option value="CSE-AIML">CSE-AIML</option>
+                        <option value="EC">EC</option>
+                        <option value="EEE">EEE</option>
+                        <option value="Mech">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                    </select>
+                    <select name="andgender1" class="recInputs" id="andmode1gender" style="display: none;">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="idk">idk</option>
+                    </select>
+                    AND
+                    <select name="mode2" class="recInputs" id="andmode2" onchange="presentpane(this)" disabled>
+                        <option value="--">--</option>
+                        <option value="sem">Semester</option>
+                        <option value="dept">dept</option>
+                        <option value="gender">gender</option>
+                    </select>
+                    <select name="andsem2" class="recInputs" id="andmode2sem" style="display: none;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <select name="anddept2" class="recInputs" id="andmode2dept" style="display: none;">
+                        <option value="CSE">CSE</option>
+                        <option value="CSE-AIML">CSE-AIML</option>
+                        <option value="EC">EC</option>
+                        <option value="EEE">EEE</option>
+                        <option value="Mech">Mechanical</option>
+                        <option value="Civil">Civil</option>
+                    </select>
+                    <select name="andgender2" class="recInputs" id="andmode2gender" style="display: none;">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="idk">idk</option>
+                    </select>
+                </div>
+                <div class="custompane">
+                    <input type="radio" name='options' value="msg" onclick="toggleField(this)">
+                    <input type="text" class="recInputs" id="msgmode" disabled required>
+                </div>
+            </div>
+            <div class="msgpane">
+                <label for="message">Write your message</label>
+                <textarea name="message_area" id="msgarea" required></textarea>
+                <button type="submit">Send</button>
+                <button type="reset">Clear</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="msg-item">
+        <span class="msg-name">${key}</span>
+        <div class="file-actions">
+          <span class="delete-icon" data-value="${filesdata[key]}" >Delete.</span>
+        </div>
+      </div>
+</body>
+<script>
+async function toggleField(radio) {
+    document.querySelectorAll(".recInputs").forEach(element => {
+        element.value='';
+        element.disabled = true;
+    });
+
+    if (radio.value === 'or') {
+        document.getElementById(radio.value+'mode1').disabled=false;
+        document.getElementById(radio.value+'mode2').disabled=false;
+
+        document.getElementById(radio.value+'mode1sem').disabled=false;
+        document.getElementById(radio.value+'mode2sem').disabled=false;
+        document.getElementById(radio.value+'mode1gender').disabled=false;
+        document.getElementById(radio.value+'mode2gender').disabled=false;
+        document.getElementById(radio.value+'mode1dept').disabled=false;
+        document.getElementById(radio.value+'mode2dept').disabled=false;
+    }
+    else if(radio.value ==='and'){
+        document.getElementById(radio.value+'mode1').disabled=false;
+        document.getElementById(radio.value+'mode2').disabled=false;
+
+        document.getElementById(radio.value+'mode1sem').disabled=false;
+        document.getElementById(radio.value+'mode2sem').disabled=false;
+        document.getElementById(radio.value+'mode1gender').disabled=false;
+        document.getElementById(radio.value+'mode2gender').disabled=false;
+        document.getElementById(radio.value+'mode1dept').disabled=false;
+        document.getElementById(radio.value+'mode2dept').disabled=false;
+    }
+    else {
+        document.getElementById(radio.value+'mode').disabled=false;
+    }
+    // document.getElementById(radio.value+'mode1').disabled=false;
+    // document.getElementById(radio.value+'mode2').disabled=false;
+    // document.getElementById(radio.value+'mode').disabled=false;
+}
+
+async function presentpane(params) {
+    
+    // let other_val = ['sem','gender','dept']
+    document.getElementById(params.id+'sem').style.display = 'none';
+    document.getElementById(params.id+'dept').style.display = 'none';
+    document.getElementById(params.id+'gender').style.display = 'none';
+
+    let val= params.value;
+    document.getElementById(params.id+val).style.display = 'inline-block';
+}
+</script>
+</html>

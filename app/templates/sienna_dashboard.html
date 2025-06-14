@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireBridge Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  
+    <link rel="stylesheet" href="{{url_for('static',path='css/sienna_dashboard.css')}}">
+</head>
+<body>
+
+    <main class="main-content">
+        <!-- Header -->
+         <div class="salute">
+             <div class="logo">HireBridge</div>
+             <div class="username">Hello <button id=logout1 title="Logout" onclick="logout()">{{user}}</button></div>
+
+         </div>
+        
+        <div class="header">
+            <h1>Dashboard Overview</h1>
+        </div>
+
+        <!-- Feature Buttons -->
+        <div class="features-grid">
+            <div class="feature-btn" id="profile_feature" onclick="openModal('Profile', '<p>Profile form here...</p>','50%','80%')">
+                <span class="material-symbols-outlined">
+                    id_card
+                    </span>
+                <h3>View Profile</h3>
+            </div>
+            <div class="feature-btn" id="res_gen_feature"  onclick="openModal('Resume Generator', '<p>Need few details...</p>','90%','80%')">
+                <span class="material-icons">post_add</span>
+                <h3>Generate Resume</h3>
+            </div>
+            <div class="feature-btn" id="ama_feature">
+                <span class="material-symbols-outlined">
+                    article_shortcut
+                    </span>
+                <h3>QuickQuery</h3>
+            </div>
+            <div class="feature-btn" id = 'openvault'>
+                <span class="material-symbols-outlined">
+                    topic
+                    </span>
+                <h3>Vault</h3>
+            </div>
+        </div>
+
+        <!-- Messages Section -->
+        <div class="analytics-section">
+            <h2>Messages For You</h2>
+            <div id="chart-container"><!-- Add your chart here --></div>
+        </div>
+
+        <!-- Job Alerts Carousel -->
+        <div class="job-alerts">
+            <h2 style="display: inline-block;">Matched Opportunities</h2>
+            <p style="display: inline-block; margin-left: 5px;">*SkillScore computed using AI,so the scores differ slightly when refreshed sometimes.</p>
+            <div class="alerts-container" id="alerts-container">
+                
+                <div class="skeleton skeleton-card"></div>
+            </div>
+
+            <h2 style="display: inline-block;">All Jobs</h2>
+            <p style="display: inline-block; margin-left: 5px;">Please review carefully, as your requirements may not match the job criteria.</p>
+            <div class="alerts-container" id="alerts-container-alljobs">
+                <div class="skeleton skeleton-card"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-frame">
+            <div class="modal-header">
+                <h3 id="modalTitle">Modal Title</h3>
+                <span class="close-modal material-icons" onclick="closeModal()">close</span>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamic content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- job modal -->
+    <div id="job-detail-frame" class="job-frame">
+        <div class="frame-content">
+            <span class="close-btn" onclick="closeJobDetails()">✖</span>
+            <div id="jobheader">
+                <h2 id="job-title">Role: </h2>
+                <p id="job-company">Company : </p>
+            </div>
+            <div id="jobpostinfo">
+                <p id="job-Postedby">Posted-by: </p>
+                <p id="job-Postedon">Posted-on: </p>
+            </div>
+            <div id="jobContent">
+
+                <p id="job-skills">Skills Required : </p>
+                <p id="job-batch">Elgible-batch : </p>
+                <p id="job-dept">Elgible-Domain : </p>
+                <p id="job-sem">Semester-Completed : </p>
+                <p id="job-cgpa">CGPA-req : </p>
+                <p id="job-description">Description : </p>
+                <p id="job-applyby">Apply-by : </p>
+            </div>
+                <a id="job-applylink" target="_blank">Apply Link</a>
+        </div>
+    </div>
+    <!-- defer -->
+    <!-- ✅ Link JS at the end of body for better performance -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="{{ url_for('static', path='js/sienna_dashboard.js') }}"></script>
+</body>
+</html>

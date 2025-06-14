@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - HireBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', path='css/zephyr_dashboard.css') }}" />
+</head>
+
+<body>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="header">
+      <h1>
+        <span class="highlight" style="color: #0dbd5c">Admin</span> Dashboard
+      </h1>
+      <h1>
+        Hello
+        <button id="logout1" title="Logout" onclick="logout()">
+          {{admin}}
+        </button>
+      </h1>
+    </div>
+
+    <!-- Quick Actions Grid -->
+    <div class="dashboard-grid">
+      <!-- Create Job -->
+      <div class="dashboard-card" onclick="CreateJobModal('Create Job','80%','90%')">
+        <div class="card-header">
+          <div class="card-icon">
+            <span class="material-icons">post_add</span>
+          </div>
+          <h3>Create New Job</h3>
+        </div>
+        <p>Post new internship or job opportunities</p>
+      </div>
+
+      <!-- Manage Jobs -->
+      <div class="dashboard-card" id = 'job-card1' onclick="CreateUserModal('Manage Jobs','commonOverlay','commonTitle')">
+        <div class="card-header">
+          <div class="card-icon">
+            <span class="material-icons">manage_accounts</span>
+          </div>
+          <h3>Manage Jobs</h3>
+        </div>
+        <p>View and edit existing job postings</p>
+      </div>
+
+      <!-- Add User -->
+      <div class="dashboard-card"  onclick="CreateUserModal('Add User','userOverlay','headerTitle')">
+        <div class="card-header">
+          <div class="card-icon">
+            <span class="material-icons">person_add</span>
+          </div>
+          <h3>Add New User</h3>
+        </div>
+        <p>Create new user accounts</p>
+      </div>
+
+      <!-- Manage Users -->
+      <div class="dashboard-card" id = 'user-card1' onclick="CreateUserModal('Manage Users','commonOverlay','commonTitle')">
+        <div class="card-header">
+          <div class="card-icon">
+            <span class="material-icons">group</span>
+          </div>
+          <h3>Manage Users</h3>
+        </div>
+        <p>View and manage user accounts</p>
+      </div>
+
+      <div class="dashboard-card" id = 'msg-card1' onclick="CreateUserModal('Send Message','commonOverlay','commonTitle')">
+        <div class="card-header">
+          <div class="card-icon">
+            <span class="material-icons">person_add</span>
+          </div>
+          <h3>Send Notification</h3>
+        </div>
+        <p>Ping messages to Users</p>
+      </div>
+    </div>
+
+    <!-- Analytics Section -->
+    <div class="analytics-container">
+      <h2>Placement Analytics</h2>
+      <div id="analytics-chart" style="height: 300px">
+        <!-- Chart would be implemented here -->
+        <canvas id="skillsChart" width="400" height="200"></canvas>
+        <canvas id="skillsChart2" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <!-- create new job modal -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-frame" id="modalFrame">
+        <div class="modal-header">
+          <h3 id="modalTitle">Modal Title</h3>
+          <span class="close-modal material-icons" id="close1" onclick="openModal()">close</span>
+        </div>
+        <div class="modal-content" id="modalContent" style="max-height: 70vh; ">
+          <form id="jobForm">
+            <!-- Row 1 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Company <span class="required">*</span></label>
+                <input type="text" name="company" id = "company-field" placeholder="Company" required />
+              </div>
+              <div class="form-group">
+                <label>Job Role <span class="required">*</span></label>
+                <input type="text" name="role" id = "role-field" placeholder="Job Role" required />
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+              <div class="form-group combo-field">
+                <label>Eligible CGPA</label>
+                <div class="combo-input">
+                  <select name="cgpa_operator" id = "cgpaop-field">
+                    <option>>=</option>
+                    <option>
+                      <=   </option>
+                    <option>==</option>
+                  </select>
+                  <input type="number" step="0.1" min="0" max="10" name="cgpa_value" id = "cgpa-field" placeholder="CGPA"  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Backlogs Allowed</label>
+                <input type="number" name="Backlogs" id = "blog-field" placeholder="Backlogs" value="0" />
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Department <span class="required">*</span></label>
+                <style>
+                  .checkbox-group{
+                    padding: 2px 0 0px 10px ;
+                    display: flex;
+                  }
+                  .checkbox-group > *{
+                    text-align: center;
+                  }
+                </style>
+                <div class="checkbox-group">
+                  <label><input type="checkbox" name="department" value="CSE" id="dept-check" class="deptCheck"> CSE</label>
+                  <label><input type="checkbox" name="department" value="CSE-AIML" class="deptCheck"> CSE-AIML</label>
+                  <label><input type="checkbox" name="department" value="EC" class="deptCheck"> EC</label>
+                  <label><input type="checkbox" name="department" value="EEE" class="deptCheck"> EEE</label>
+                  <label><input type="checkbox" name="department" value="Mechanical" class="deptCheck"> Mech</label>
+                  <label><input type="checkbox" name="department" value="Civil" class="deptCheck"> Civil</label>
+              </div>
+                <!-- <select name="department" >
+                  <option value="">Select Department</option>
+                  <option>CSE</option>
+                  <option>EC</option>
+                  <option>EEE</option>
+                  <option>Mech</option>
+                  <option>Civil</option>
+                  <option>CSE-AIML</option>
+                </select> -->
+              </div>
+              <div class="form-group">
+                <label>Batch <span class="required">*</span></label>
+                <input type="number" name="batch" id="batch-field" min="2000" max="2099"  />
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Skills (comma separated)</label>
+                <input type="text" id ='skill-field' name="skills" />
+              </div>
+              <div class="form-group">
+                <label>Semesters Completed</label>
+                <input type="number" id="sem-field" name="sems" min="1" max="8" />
+              </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>Apply By</label>
+                <input type="date" name="apply_by" id="applyby-field" />
+              </div>
+              <div class="form-group">
+                <label>Apply Link</label>
+                <input type="url" name="apply_link" id="applyl-field" />
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label>Job Description <span class="required">*</span></label>
+              <textarea name="description" rows="3" id="description-field" ></textarea>
+            </div>
+
+            <div class="form-actions" style="padding: 10px;">
+              <button type="reset" class="btn secondary" id="btn-secondary">Clear</button>
+              <button type="submit" id="job-submit" class="btn primary" value="" style="color: white;">Create Job</button>
+            </div>
+          </form>
+          <style>
+            .modal-form {
+              padding: 0.5rem;
+            }
+            
+            .form-row {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 1rem;
+              margin-bottom: 1rem;
+            }
+            
+            .form-group {
+              margin-bottom: 0.5rem;
+            }
+            
+            label {
+              display: block;
+              margin-bottom: 0.25rem;
+              font-size: 0.9rem;
+              color: var(--text-color);
+              font-weight: 500;
+            }
+            
+            input, select, textarea {
+              width: 100%;
+              padding: 0.5rem;
+              border: 2px solid #e2e8f0;
+              border-radius: 6px;
+              font-size: 0.9rem;
+            }
+            
+            .combo-input {
+              display: flex;
+              gap: 0.5rem;
+              align-items: center;
+            }
+            
+            .combo-input select {
+              width: 70px;
+            }
+            
+          
+            .radio-group label {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              font-weight: normal;
+            }
+            
+            .required {
+              color: #ef4444;
+              margin-left: 0.25rem;
+            }
+            
+            .form-actions {
+              display: flex;
+              justify-content: flex-end;
+              gap: 1rem;
+              margin-top: 1rem;
+            }
+            
+            .btn {
+              padding: 0.5rem 1.5rem;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-weight: 500;
+            }
+            
+            .primary {
+              background: var(--primary-color);
+              color: rgb(0, 0, 0);
+            }
+            
+            .secondary {
+              background: #e2e8f0;
+              color: var(--text-color);
+            }
+            
+            @media (max-width: 768px) {
+              .form-row {
+                grid-template-columns: 1fr;
+              }
+              
+              .combo-input {
+                flex-direction: column;
+              }
+              
+              .combo-input select {
+                width: 100%;
+              }
+            }
+            </style>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="user-overlay" id="userOverlay">
+      <div class="user-frame" id="userFrame">
+        <div class="user-header" id="userHeader">
+          <h3 id="headerTitle">Add a new User</h3>
+          <span class="close-modal material-icons" onclick="openUserModal('userOverlay')">close</span>
+        </div>
+        <div class="usercontent">
+          <form id="userform">
+
+            <div class="inputrow">
+              <div class="onesector">
+              <div class="inputfields" id="sno">
+                <label>SNo<span class="required">*</span></label>
+                <input type="text" name="sno" id="sno-field" placeholder="SNo" required>
+              </div>
+              <div class="inputfields" id="usn">
+                <label>USN<span class="required">*</span></label>
+                <input type="text" name="usn" id="usn-field" placeholder="USN" required>
+              </div>
+            </div>
+              <div class="inputfields" id="name">
+                <label>Name<span class="required">*</span></label>
+                <input type="text" name="name" id="name-field" placeholder="Name" required>
+              </div>
+            </div>
+
+            <div class="inputrow">
+              <div class="onesector">
+                <div class="inputfields" id="gender">
+                  <label>Gender<span class="required">*</span></label>
+                  <select name="gender" id="gender-field">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="idk">idk</option>
+                  </select>
+                </div>
+                <div class="inputfields" id="phone">
+                  <label>Phone<span class="required">*</span></label>
+                  <input type="tel" name="phone" id="phone-field" placeholder="Phone Number" required>
+                </div>
+              </div>
+              <div class="inputfields" id="email">
+                <label>Email<span class="required">*</span></label>
+                <input type="email" name="email" id="email-field" placeholder="Email" required>
+              </div>
+            </div>
+
+            <div class="inputrow">
+              <div class="inputfields" id="department">
+                <label>Department<span class="required">*</span></label>
+                <div class="checkbox-group" >
+                  <label><input type="radio" name="department" class="deptRadio" value="CSE" required> CSE</label>
+                  <label><input type="radio" name="department" class="deptRadio" value="CSE-AIML"> CSE-AIML</label>
+                  <label><input type="radio" name="department" class="deptRadio" value="EC"> EC</label>
+                  <label><input type="radio" name="department" class="deptRadio" value="EEE"> EEE</label>
+                  <label><input type="radio" name="department" class="deptRadio" value="Mechanical"> Mech</label>
+                  <label><input type="radio" name="department" class="deptRadio" value="Civil"> Civil</label>
+              </div>
+              </div>
+              <div class="onesector">
+              <div class="inputfields" id="sem">
+                <label>Semester<span class="required">*</span></label>
+                <input type="number" name="sem" min="1" max='8' id="semuser-field" placeholder="Semester" required>
+              </div>
+              <div class="inputfields" id="batch">
+                <label>Batch(Passout Year)<span class="required">*</span></label>
+                <input type="number" min="2000" max="2099" name="passout" id="passout-field" placeholder="Batch-YYYY" required>
+              </div>
+            </div>
+            </div>
+
+            <div class="inputrow">
+              <div class="inputfields" id="skills">
+                <label>Skills (comma separated)<span class="required">*</span></label>
+                <input type="text" name="skills" id="skills-field" placeholder="Skills">
+              </div>
+              <div class="onesector">
+              <div class="inputfields" id="cgpa">
+                <label>CPGA (Till now)<span class="required">*</span></label>
+                <input type="number" step="0.1" min="0" max="10" name="cgpa" id="cgpauser-field" placeholder="CGPA" required>
+              </div>
+              <div class="inputfields" id="backlog">
+                <label>Backlogs<span class="required">*</span></label>
+                <input type="number" name="backlog" id="backlog-field" placeholder="Backlogs" value="0" required>
+              </div>
+            </div>
+            </div>
+
+            <div class="inputrow">
+              <div class="inputfields" id="password">
+                <label>Password<span class="required">*</span></label>
+                <input type="password" name="password" id="pass-req" placeholder="Set Candidate Password" required>
+              </div>
+              <div class="inputfields" id="reenter">
+                <label>Re-Enter Password<span class="required">*</span></label>
+                <input type="password" name="reenter" id="repass-req" placeholder="Re-Enter Password" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Admin Remark<span class="required">*</span></label>
+              <textarea name="admin_remark" id="adminR-field" rows="2">Good</textarea>
+            </div>
+
+            <div class="form-actions" style="padding: 5px;">
+              <button type="reset" class="btn secondary" id="btn-secondary2">Clear</button>
+              <button type="submit" class="btn primary" id ='addeduser' style="color: white;">Add User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="common-overlay" id="commonOverlay">
+      <div class="common-frame" id="commonFrame">
+        <div class="common-header">
+          <h3 id="commonTitle">{Title}</h3>
+          <span class="close-modal material-icons" id="close3" onclick="openUserModal('commonOverlay')">close</span>
+        </div>
+        <!-- <h7 style="margin-left: 12px;">CTRL+F to search list</h7> -->
+        <div class="common-content" id = "commonContent">
+          content
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ✅ Link JS at the end of body for better performance -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', path='js/zephyr_dashboard.js') }}"></script>
+</body>
+
+</html>
+

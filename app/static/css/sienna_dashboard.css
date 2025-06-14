@@ -1,0 +1,835 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+Sidebar Styles
+.sidebar {
+    width: 250px;
+    background: white;
+    padding: 1.5rem;
+    position: fixed;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+.salute{
+    display: flex;
+    align-items: baseline;
+    font-size: 2.0rem;
+    font-weight: 500;
+    gap: 10px;
+    box-sizing: border-box;
+
+}
+#logout1{
+    font-size: 2.0rem;
+    font-weight: 500;
+    gap: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline;
+}
+
+#logout1:hover{
+    /* border:1.1px solid rgba(201, 13, 13, 0.66); */
+    box-shadow: 8px 5px 200px rgb(255, 0, 0);
+    background: rgba(255, 0, 0, 0.082);
+    /* backdrop-filter: blur(5px); */
+    border-radius: 10px;
+    /* transition: border 0.2s ease-in-out; */
+    /* margin: 5px; */
+}
+
+
+.logo {
+    margin-right: auto;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.1rem;
+
+
+}
+
+
+.nav-item {
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: #e2e8f0;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: 5px;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Feature Buttons Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.feature-btn {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.feature-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Analytics Section */
+.analytics-section {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding-bottom: 0.4rem;
+}
+
+/* Job Alerts Carousel */
+.job-alerts {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* width: 96.4vw; */
+}
+/* =======================================================Skimmereffect */
+/* Pulsating effect */
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.skeleton {
+    background:linear-gradient(114deg, 
+    rgba(173, 216, 230, 0.6) 10%,   /* Light Blue */
+    rgba(255, 182, 193, 0.6) 30%,   /* Soft Pink */
+    rgba(255, 165, 0, 0.6) 50%,     /* Warm Orange */
+    rgba(147, 112, 219, 0.6) 70%,   /* Soft Purple */
+    rgba(0, 255, 255, 0.6) 90%);    /* Cyan Glow */
+    border-radius: 8px;
+    animation: pulse 1.6s infinite ease-in-out;
+
+}
+
+.skeleton-card {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 10px;
+}
+/* =======================================================Skimmereffect */
+
+.alerts-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+}
+/* ==================================================== */
+/* .alert-card {
+    min-width: 15.3632%;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: var(--background-color);
+    scroll-snap-align: start;
+    
+} */
+
+/* ==================================================to be deleted */
+.alert-card {
+    min-width: 15.3632%;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: var(--background-color);
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.7); /* Glass effect */
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    backdrop-filter: blur(10px); /* Subtle blur effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Matched/recommended job styling */
+.alert-card.tier1 {
+    background: rgba(232, 245, 233, 0.8); /* Soft green glass effect */
+    border: 1px solid #81c784;
+    box-shadow: 0 6px 18px rgba(129, 199, 132, 0.3);
+}
+.tier1 p#skillscore {
+    /* Your styles here */
+    margin: 0;
+    color:#11a517;
+    font-weight: 550;
+}
+
+.alert-card.tier2 {
+    background: rgba(250, 245, 225, 0.8); /* Soft golden tint */
+    border: 1px solid #f4c542; /* Warm golden border */
+    box-shadow: 0 6px 18px rgba(244, 197, 66, 0.3); /* Subtle golden glow */    
+}
+.tier2 p#skillscore {
+    /* Your styles here */
+    margin: 0;
+    color:#a56b11;
+    font-weight: 450;
+}
+
+.alert-card.tier3 {
+    background: rgba(250, 235, 225, 0.8); /* Soft orange-peachy tint */
+    border: 1px solid #ff9800; /* Warm orange */
+    box-shadow: 0 6px 18px rgba(255, 152, 0, 0.3); /* Subtle warm glow */
+}
+.tier3 p#skillscore {
+    /* Your styles here */
+    margin: 0;
+    color:#a51111d6;
+    font-weight: 400;
+}
+
+/* Text Styling */
+.alert-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.alert-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+/* Button */
+.apply-btn {
+    display: block;
+    width: 100%;
+    background: #4caf50;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+.alertall{
+    background-color: #676767;
+    color: whitesmoke;
+}
+
+.apply-btn:hover {
+    background: #388e3c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(56, 142, 60, 0.3);
+}
+.alertall:hover{
+    background-color: #000000;
+    transform: translateX(-3px);
+    box-shadow: 0 4px 10px rgba(142, 56, 56, 0.3);
+}
+
+/* =================================================== */
+
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.336);
+    backdrop-filter: blur(3px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+  }
+  .hoga-kuch-toh{
+    display: flex;
+  }
+  #profile-sno{
+    flex-grow: 2;
+  }
+
+
+  .modal-content{
+    font-weight: 500;
+    line-height: 2;
+  }
+  .modal-frame {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    min-width: 30%;
+    max-height: 80%;
+    /* max-width: 60%; */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(-20px);
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    scrollbar-width: thin;
+  }
+  
+  .modal-header {
+    display: flex;
+    position: sticky;
+    top:0px;
+    background-color:white;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  .close-modal {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .close-modal:hover {
+    background: #f1f5f9;
+    transform: rotate(90deg);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* Add this to existing CSS */
+  .feature-btn {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-btn:active {
+    transform: scale(0.98);
+  }
+  
+  @media (max-width:768px) {
+      .modal-frame {
+          min-width: 85%;
+          height: 80vh;
+          max-width: none;
+          max-height: none;
+          aspect-ratio: unset;
+        }
+  
+      
+  }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .salute{
+        flex-direction: column;
+        align-items:flex-start;
+    }
+
+    .username{
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+    
+
+    body {
+        flex-direction: column;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =======================jobmodal */
+/* Frame Overlay */
+.job-frame {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 50%;
+    /* max-width: 600px; */
+    background: white;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 6px;
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    overflow-y: auto;
+    max-height: 80%;
+    scrollbar-width: thin;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+    .job-frame {
+        height: 80%;
+        width: 90%; /* Take up most of the screen */
+        max-width: none;
+        padding: 15px;
+        transform: translate(-50%, -50%) scale(1);
+        overflow-y: scroll;
+
+        /* ✅ Smooth scrolling */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* Ensures smooth iOS scroll */
+    }
+
+    #job-description {
+        width: 100%; /* Full width for better readability */
+    }
+
+    #jobpostinfo {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 14px;
+    }
+
+    #jobContent {
+        font-size: 16px; /* Slightly smaller font for mobile */
+    }
+}
+
+/* 📱 Even Smaller Screens (≤ 480px) */
+@media (max-width: 480px) {
+    .job-frame {
+        width: 95%; /* Use almost full width */
+        padding: 12px;
+        border-radius: 4px; /* Slightly smaller rounded edges */
+    }
+
+    .close-btn {
+        font-size: 16px; /* Reduce close button size */
+    }
+
+    #jobContent {
+        font-size: 14px;
+    }
+}
+
+#job-company{
+    margin-bottom: 10px;
+}
+
+#jobheader{
+    margin: 0px 0;
+    border-bottom:2px solid #e2e8f0 ;
+}
+#jobpostinfo{
+    padding-top: 5px;
+    display: flex;
+    gap:10px;
+    justify-content: end;
+    font-weight: 400;
+    font-size: 15;
+}
+#jobContent{
+    font-weight: 500;
+    font-size: 18px;
+}
+#jobContent>p{
+    margin: 35px 0px;
+}
+#jobContent > p:first-child {
+    /* Styles for the first direct <p> child of #jobContent */
+    margin-top: 5px;
+}
+#job-description{
+    width: 85%;
+    line-height: 1.4;
+}
+/* Show frame with animation */
+.job-frame.active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Close Button */
+.close-btn {
+    float: right;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Background Blur Effect */
+body.modal-open {
+    overflow: hidden;
+}
+
+body.modal-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+
+/* =======================jobmodal */
+
+/* ================ama_modal */
+#amaresponse{
+    margin-top: 12px;
+    padding: 2%;
+}
+#amainput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1); /* Glass effect */
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* AI Input Field */
+#amatext {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    color: rgb(0, 0, 0);
+    transition: all 0.3s ease;
+}
+
+/* Placeholder Styling */
+#amatext::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+/* Focus Effect */
+#amatext:focus {
+    border-color: #4caf50;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Submit Button */
+#amabtn {
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #4caf50, #81c784);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* Hover & Click Effects */
+#amabtn:hover {
+    background: linear-gradient(45deg, #66bb6a, #a5d6a7);
+}
+
+#amabtn:active {
+    transform: scale(0.95);
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 600px) {
+    #amainput {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    #amatext {
+        width: 100%;
+        font-size: 14px;
+        
+    }
+
+    #amabtn {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* ================ama_modal */
+
+/* ================res_gen_modal */
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row input {
+    flex: 1;
+}
+
+#edu input:first-of-type {
+    flex-grow: 8;
+}
+#res_gen_btn {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#res_gen_btn:hover {
+    background: #45a049;
+}
+/* ================res_gen_modal */
+.miscbtn {
+    padding: 10px;
+    margin: 5px auto;
+    width: 49.6%;
+    background: #8C8F00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* ================vault */
+
+#uploadfile{
+    /* border: 1px solid black; */
+    width: 400px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    
+}
+
+
+
+#uploadBtn{
+    padding: 10px;
+    margin-left: 20px;
+    color: #11a517;
+    font-weight: bolder;
+    border: dashed 2px grey;
+    border-radius: 5px;
+
+}
+
+#uploadBtn:hover{
+    cursor: pointer;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+    #uploadfile {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    #uploadBtn{
+        margin-left: 0px;
+    }
+
+    .file-item{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.file-list,#chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-top: 2px dotted #e9e9e9;
+  padding-top: 16px;
+}
+#chart-container {
+    border: none;
+    margin-top: 10px;
+    padding-top: 0;
+}
+.msg-item{
+    padding-top: 1rem;
+}
+.file-item,.msg-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.msg-name{
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.file-item:hover {
+  background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+}
+
+.file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+
+/* Action container */
+.file-actions{
+  display: flex;
+  gap: 25px;
+  min-width: 40px; /* Prevent shifting */
+}
+/* .download-icon{
+    color: #4caf50;
+} */
+
+/* Shared icon styles */
+.download-icon,
+.delete-icon,.msgdelete-icon,.changeP-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 14px;
+  font-weight:800;
+  border-radius: 10%;
+  pointer-events: none;
+}
+
+.changeP-icon{
+    border-radius: 2px;
+    padding: 5px;
+}
+
+
+/* Show on hover */
+.file-item:hover .download-icon,
+.file-item:hover .delete-icon,
+.msg-item:hover .msgdelete-icon,
+.changeP:hover .changeP-icon  {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hover styles */
+.download-icon:hover {
+  background: rgba(59, 246, 72, 0.15); /* Soft blue */
+  color: #11a517;
+  transform: scale(1.1);
+}
+
+.delete-icon:hover,.msgdelete-icon:hover {
+  background: rgba(239, 68, 68, 0.15); /* Soft red */
+  color: #ef4444;
+  transform: scale(1.1);
+}
+.changeP-icon:hover{
+    background-color: rgba(59, 246, 72, 0.15);;
+    color: #11a517;
+}

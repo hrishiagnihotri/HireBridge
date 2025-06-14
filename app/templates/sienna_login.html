@@ -1,0 +1,146 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireBridge - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            padding: 2rem;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .login-container2 {
+            width: 100%;
+            max-width: 400px;
+            margin-right: auto;
+            padding: 2rem;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .role{
+            margin-top: 0;
+            
+            font-size: 1.1rem;
+            font-weight: 550;
+            margin-top: 0;margin-bottom: 0;
+            text-align: right;
+        }
+
+        /* .logo::before {
+            content: '🎯';
+            margin-right: 0.5rem;
+        } */
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="{% if role == 'Admin' %}login-container2{% else %}login-container{% endif %}">
+        <div class="logo">HireBridge
+            <div class="role">{{role}}</div>
+        </div>
+        <form action="{% if role == 'Admin' %}/admin_login{% else %}/login{% endif %}" method="post">
+            <div class="form-group">
+                <!-- <label for="username">Username</label> -->
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 10px;">
+                <!-- <label for="password">Password</label> -->
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div style="text-align: center; color:rebeccapurple;font-weight: 500;margin-bottom: 10px;">{{error}}</div>
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+    </div>
+</body>
+
+
+</html>
